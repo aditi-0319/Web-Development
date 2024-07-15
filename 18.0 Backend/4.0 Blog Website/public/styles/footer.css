@@ -1,0 +1,49 @@
+*{
+    color: #7469B6;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #FFE6E6;
+}
+
+*{
+    font-family: sans-serif;
+    color: #7469B6;
+}
+
+#create-blog-heading{
+    
+}
+
+#create-blog-form{
+    height: 700px;
+    margin: 20px 40px;
+}
+
+#create-blog-button{
+    height: 20px;
+    width: 50px;
+    background-color: #E1AFD1;
+}
+
+#create-blog-button:hover{
+    background-color: #AD88C6;
+}
+
+
+#footer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 120px;
+    background-color: #E1AFD1;
+}
+
+footer {
+    width: 100%;
+    background-color: #E1AFD1;
+    position: fixed;
+    bottom: 0;
+}

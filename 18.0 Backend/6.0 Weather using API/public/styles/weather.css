@@ -1,0 +1,172 @@
+* {
+    font-family: "Inter", sans-serif;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url("../images/rain.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin: 0;
+    padding-top: 15px;
+}
+
+#container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+}
+
+#header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100%;
+}
+
+#forecast-temp {
+    display: flex;
+    align-items: center;
+}
+
+.forcast-dt-total {
+    color: white;
+    margin: 0;
+}
+
+h1 {
+    font-size: 100px;
+    margin: 0;
+}
+
+h2 {
+    font-size: 50px;
+    margin-right: 20px;
+    margin-bottom: 0;
+}
+
+h3 {
+    font-size: 30px;
+    margin: 10px 0;
+}
+
+h4{
+    text-align: center;
+}
+
+img {
+    display: block;
+    position: relative;
+    top: 0px;
+}
+
+#quote {
+    background-color: rgba(255, 255, 255, 0.6);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.forcast-dt-content {
+    font-size: 16px; /* Reduced font size */
+    margin: 3px 0; /* Reduced margin */
+}
+
+#content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 25px;
+}
+
+#today-temp {
+    background-color: rgba(255, 255, 255, 0.6);
+    padding: 12px; /* Further reduced padding */
+    border-radius: 10px;
+    padding-top: 12.5px;
+}
+
+.main-today-c {
+    color: black;
+    font-size: 18px; /* Further reduced font size */
+    margin: 8px 0; /* Reduced margin */
+    text-align: center;
+}
+
+hr {
+    background-color: black;
+    height: 1px; /* Reduced height */
+    border: none;
+    margin: 20px 0;
+}
+
+#today-table {
+    width: 100%;
+    text-align: center;
+}
+
+.today-item {
+    padding: 6px; /* Further reduced padding */
+}
+
+.today-c {
+    font-size: 16px; /* Further reduced font size */
+    margin: 3px 0; /* Reduced margin */
+}
+
+.today-img {
+    display: block;
+    margin: 0 auto;
+}
+
+#day-temp {
+    background-color: rgba(255, 255, 255, 0.6);
+    padding: 12px; /* Further reduced padding */
+    border-radius: 10px;
+    margin-bottom: 10px; /* Slightly reduced margin */
+}
+
+#day-c {
+    font-size: 18px; /* Further reduced font size */
+    margin: 8px 0; /* Reduced margin */
+    text-align: center;
+}
+
+.weather-data {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.weather-data td {
+    padding: 6px; /* Further reduced padding */
+    text-align: center;
+    vertical-align: middle;
+}
+
+.weather-data td.img img {
+    max-width: 40px; /* Further reduced image size */
+    max-height: 40px; /* Further reduced image size */
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 1200px) {
+    #container {
+        grid-template-columns: 1fr;
+    }
+
+    h1, h2 {
+        text-align: center;
+    }
+}

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CloudCast</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles/weather.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<% 
+const weatherQuotes = {
+    "clear sky": "Look up at the sky. Every cloud has a silver lining.",
+    "few clouds": "Life is full of possibilities, just like the spaces between clouds.",
+    "scattered clouds": "Change is as unpredictable as clouds scattered in the sky.",
+    "broken clouds": "Even broken clouds can't dim the brightness of a determined spirit.",
+    "shower rain": "Rain showers remind us that growth often starts with a few drops.",
+    "rain": "The rhythm of the rain can soothe even the weariest soul.",
+    "thunderstorm": "In the midst of a storm, courage is like lightning, illuminating the darkest skies.",
+    "snow": "Each snowflake is a reminder that beauty can be both delicate and powerful.",
+    "mist": "Through the mist, clarity emerges, revealing hidden paths and new perspectives."
+};
+ %>
+
+    <div id="container">
+        <div id="header">
+            <h1 class="heading forcast-dt-total" id="title">CloudCast</h1>
+            
+            <div id="forcast">
+                <div id="forecast-temp">
+                    <h2 class="forcast-dt-total heading">
+                        <%= temp %>&deg;C
+                    </h2>
+
+                    <img src="/images/<%= list[0].weather[0].icon %>@2x.png" height="90px" width="90px"> 
+                </div>  
+
+                <h3 class="forcast-dt-total"><%= cityName %></h3>
+                <p class="forcast-dt-content forcast-dt-total"><%= ft %> | Max. Temp.: <%= maxTemp %>&deg;C | Min. Temp: <%= minTemp %>&deg;C</p>       
+                <p class="forcast-dt-content forcast-dt-total">Feels Like <%= feelsLike %>&deg;C</p>         
+            </div>
+        </div>
+
+        <div id="content">        
+            <div id="today-temp">
+                <p class="main-today-c"><%= curr_next_weather %> around <%= ft1 %></p>
+                
+                <hr>
+                
+                <table id="today-table">
+                    <tr id="today-rows">
+                        <% for (let i = 0; i < 5; i++) { %>
+                            <td class="today-item">
+                                <p class="today-c"><%= list[i].dt_txt.split(" ")[1].slice(0, 5) %></p>        
+                                <img src="/images/<%= list[i].weather[0].icon %>@2x.png" height="40px" width="40px" class="today-img">
+                                <p class="today-c"><%= list[i].main.temp %>&deg;C</p>
+                            </td>
+                        <% } %>
+                    </tr>
+                </table>
+            </div>
+        
+
+            <div id="quote">
+                <h4>
+                    <% if (weatherQuotes[list[0].weather[0].description]) { %>
+                        <%= weatherQuotes[list[0].weather[0].description] %>
+                    <% } else { %>
+                        <% const a = new Date(); %>
+                        <% const date = a.toISOString().split('T')[0]; %>
+                        <% const day = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"] %>
+                        <% const b = a.getDay(); %>
+                        <%= day[b] %> | <%= date %>
+                    <% } %>
+                </h4>
+            </div>
+
+            <div id="day-temp">
+                <p id="day-c">5-Day Forecast</p>
+
+                <hr>
+
+                <table id="weather-table" class="weather-data">
+                    <% var d = new Date() %>
+                    <% const dayName = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"] %>
+                    
+                    <% for(let i = 1; i < 40; i += 8) { %>
+                    <tr>
+                        <td class="day">
+                            <% let d = new Date(list[i].dt_txt.split(" ")[0]) %>
+                            <% let index = d.getDay(); %>
+                            <%= dayName[index]  %> | <%= list[i].dt_txt.split(" ")[0].split("-")[2] %>
+                        </td>
+                        <td class="img"><img src="/images/<%= list[i].weather[0].icon %>@2x.png" alt="Weather icon for Monday"></td>
+                        <td class="temp"><%= list[i].main.temp %>&deg;C</td>
+                        <td class="weather-type"><%= list[i].weather[0].main %></td>
+                        <td class="min-max-temp"><%= list[i].main.temp_min %>&deg;C / <%= list[i].main.temp_max %>&deg;C </td>
+                        <td class="humidity"><img src="\images\humidity.png" alt="Humidity icon" width="16" height="16"> <%= list[i].main.humidity %>%</td>
+                    </tr>
+                    <% } %>
+                </table>
+                
+            </div>
+               
+        </div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            const weatherIcon = '<%= list[0].weather[0].icon %>';
+            const title = document.getElementById("title");
+            const content = document.getElementById("forcast");
+
+            if (weatherIcon) {
+                document.body.style.backgroundImage = `url('/images/${weatherIcon}.jpg')`;
+            }
+
+            const arr = ["01n", "02n", "03n", "04n" ,"09d", "09n", "10d", "10n", "11d", "11n", "50d", "50n"];
+
+            if (arr.includes(weatherIcon)) {
+                title.style.color = "white";
+                content.style.color = "white";
+            } else {
+                title.style.color = "black";
+                content.style.color = "black";
+            }
+        };
+    </script>
+</body>
+</html>
